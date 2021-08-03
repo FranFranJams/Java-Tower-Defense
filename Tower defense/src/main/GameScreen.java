@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -10,51 +11,32 @@ import javax.swing.JPanel;
 
 public class GameScreen extends JPanel {
 
-	private Random random;
+	private Game game;
 	
-	private BufferedImage img;
+	private Dimension size;
 	
-	private ArrayList<BufferedImage> sprites = new ArrayList<>();
-
-
-	
-	
-	public GameScreen(BufferedImage img) {
-		this.img = img;
+	public GameScreen(Game game) {
+		this.game = game;
 		
-		loadSprites();
-		
-		random = new Random();	
-		
-		
+		setPanelSize();
 
 	}
 	
-	private void loadSprites() {
-		
-		for (int y = 0; y < 10; y++) {
-			for (int x = 0; x < 10; x++) {
-				sprites.add(img.getSubimage(x*32, y*32, 32, 32));
-			}
-		}
-		
+	private void setPanelSize() {
+		size = new Dimension(640,640);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
 	}
+	
+	
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-	//	g.drawImage(sprites.get(8), 0, 0, null);
-		//g.drawImage(img.getSubimage(32*9, 32, 32, 32), 0, 0, null);
-		
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 20; x++) {
-				
-				g.drawImage(sprites.get(getRandInt()), x*32, y*32, null);
-				
-				
-				//g.setColor(getRandColor());
-				//g.setColor(new Color(108,45,199));
-				//g.fillRect(x * 32, y * 32, 32, 32);
+		render.render(g);
+	// purple: g.setColor(new Color(108,45,199));
+
 		}
 	}
 
@@ -62,19 +44,4 @@ public class GameScreen extends JPanel {
 }
 
 	
-	
-	private int getRandInt() {
-		return random.nextInt(100);
-	}
-	
-	
-	private Color getRandColor() {
-		int r = random.nextInt(256);
-		int g = random.nextInt(256);
-		int b = random.nextInt(256);
-		
-		return new Color(r, g, b);
-	}
-	
-}
 
