@@ -13,21 +13,17 @@ public class Game extends JFrame implements Runnable {
 	
 	private BufferedImage img;
 	
-	
 	private int updates;
 	private long lastTimeUPS;
 	
-	private long lastUpdate;
-	private double timePerUpdate;
-	
 	private Thread gameThread;
+	
+	private final double FPS_SET = 120.0;
+	private final double UPS_SET = 60.0;
 	
 	//Use Ctrl + Space to show auto complete!
 	
 	public Game() {
-
-		
-		timePerUpdate = 1000000000.0 / 60.0;
 		
 		importImg();
 		
@@ -64,22 +60,11 @@ public class Game extends JFrame implements Runnable {
 		gameThread.start();
 	}
 
-	private void loopGame() {
- 
-		}
-			
-	private void callUPS() {
-		if (System.currentTimeMillis() - lastTimeUPS >=1000) {
-			System.out.println("UPS: " + updates);
-			updates = 0;
-			lastTimeUPS = System.currentTimeMillis();
-		}
-	}
-	
 
+
+	
 	private void updateGame() {
-		updates++;
-		lastUpdate = System.nanoTime();
+
 		//System.out.println("Game Updated");
 		
 	}
@@ -94,39 +79,37 @@ public class Game extends JFrame implements Runnable {
 	public void run() {
 	
 
-		double timePerFrame;
+		double timePerFrame = 1000000000.0 / FPS_SET;
+		double timePerUpdate = 1000000000.0 / UPS_SET;
 		long lastFrame = System.nanoTime();
+		long lastUpdate = System.nanoTime();
+		long lastTimeCheck = System.currentTimeMillis(); 
 		
-		//long lastUpdate;
-		//double timePerUpdate;
 		
-		timePerFrame = 1000000000.0 / 100.0;
-		//timePerUpdate = 1000000000.0 / 60.0;
-	
+		int frames = 0;
+		int updates = 0;
+		
+		
 		while(true) {
+			// Render
 			if (System.nanoTime() - lastFrame >= timePerFrame) {
+				repaint();
 				lastFrame = System.nanoTime();
-				repaint();		
+				frames++;
 	}		
-
-			//Render
-		
-		if (System.nanoTime() - lastUpdate >= timePerUpdate) {
+			// Update
+			if (System.nanoTime() - lastUpdate >= timePerUpdate) {
 				updateGame();
-				
-				callUPS();
-			}
-		}			
-
-		
-		
-	//Update
-		
-	//Checking FPS + UPS
-		
+				lastUpdate = System.nanoTime();
+				updates++;
 	}
-	
-	
-	
-	
+			// FPS + UPS Check
+			if (System.currentTimeMillis() - lastTimeCheck >= 1000) {
+				System.out.println("FPS " + frames + " | UPS " + updates);
+				frames = 0;
+				updates = 0;
+				lastTimeCheck = System.currentTimeMillis();
+			}
+		}
+	}
 }
