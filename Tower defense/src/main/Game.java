@@ -4,23 +4,27 @@ import javax.swing.JFrame;
 
 public class Game extends JFrame{
 	
+	
+	private GameScreen gameScreen;
+	
 	//Use Ctrl + Space to show auto complete!
 	
 	public Game() {
 		
-		setSize(400,400);
+		setSize(640,640);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setTitle("Tower Defense");
 		
+		
+		gameScreen = new GameScreen();
+		add(gameScreen);
 	}
 	
 	
 	public static void main(String[] args) {
-		
-		System.out.println("Start of Tower Defense");
-		
+				
 		Game game = new Game();
 		
 	}
