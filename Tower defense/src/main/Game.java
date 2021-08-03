@@ -39,11 +39,14 @@ public class Game extends JFrame implements Runnable {
 	
 	public Game() {
 
+		initClasses(); 
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setTitle("Tower Defense");
+		setResizable(false);
 		
-		initClasses(); 
+		
 		add(gameScreen);
 
 		pack();
@@ -138,5 +141,21 @@ public class Game extends JFrame implements Runnable {
 		public Render getRender() {
 			return render;
 		}
-	
+
+
+		public Menu getMenu() {
+			return menu;
+		}
+
+
+		public Playing getPlaying() {
+			return playing;
+		}
+		
+
+		public Settings getSettings() {
+			return settings;
+		}
+
+		
 }
