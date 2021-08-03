@@ -34,14 +34,13 @@ public class GameScreen extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		render.render(g);
+		game.getRender().render(g);
 	// purple: g.setColor(new Color(108,45,199));
 
 		}
 	}
 
 	
-}
 
 	
 

@@ -16,10 +16,10 @@ public class Render {
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 	private Random random;
 
-	private GameScreen gameScreen;
+	private Game game;
 	
-	public Render(GameScreen gameScreen) {
-		this.gameScreen = gameScreen;
+	public Render(Game game) {
+		this.game = game;
 		random = new Random();
 		importImg();
 		loadSprites();
@@ -44,7 +44,7 @@ public class Render {
 			
 		case SETTINGS:
 			
-			break;
+		break;
 	}
 }		
 	
