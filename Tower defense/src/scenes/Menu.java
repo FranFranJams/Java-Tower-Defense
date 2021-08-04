@@ -10,6 +10,8 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import main.Game;
+import ui.FirstButton;
+import static main.GameStates.*;
 
 public class Menu extends GameScene implements SceneMethods {
 	
@@ -18,22 +20,36 @@ public class Menu extends GameScene implements SceneMethods {
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 	private Random random;
 	
+	private FirstButton bPlaying, bSettings, bQuit;
+	
 	public Menu(Game game) {
 		super(game);
 		random = new Random();
 		importImg();
 		loadSprites();
+		initButtons();
+	}
+
+	
+	
+	private void initButtons() {
 		
+		bPlaying = new FirstButton("Play", 100, 100, 100, 30);
 	}
 
 	@Override
 	public void render(Graphics g) {
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 20; x++) {	
-			g.drawImage(sprites.get(getRandInt()), x*32, y*32, null);
-		}
-	}
+		
+		
+		drawButtons(g);
 }	
+	
+	
+		private void drawButtons(Graphics g) {
+		bPlaying.draw(g);
+		
+	}
+
 		private void importImg() {
 			
 			InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
@@ -61,6 +77,16 @@ public class Menu extends GameScene implements SceneMethods {
 		
 		private int getRandInt() {
 			return random.nextInt(100);
+		}
+
+
+
+		@Override
+		public void mouseClicked(int x, int y) {
+			
+			if(Playing.getBounds().contains(x, y)) {
+				SetGameState(PLAYING);
+			}
 		}
 		
 		

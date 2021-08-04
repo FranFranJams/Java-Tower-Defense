@@ -37,4 +37,10 @@ public class Playing extends GameScene implements SceneMethods{
 		//g.fillRect(0, 0, 640, 640);
 	}
 
+	@Override
+	public void mouseClicked(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
