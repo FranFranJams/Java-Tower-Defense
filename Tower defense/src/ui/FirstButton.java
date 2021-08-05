@@ -9,6 +9,8 @@ public class FirstButton {
 	private int x, y, width, height;
 	private String text;
 	private Rectangle bounds;
+	private boolean mouseHover;
+	
 	
 	public FirstButton(String text, int x, int y, int width, int height) {
 		this.text = text;
@@ -29,8 +31,8 @@ public class FirstButton {
 	public void draw(Graphics g) {
 		
 		// Body
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+		drawBody(g);
+
 		
 		
 		// Border
@@ -43,6 +45,20 @@ public class FirstButton {
 		
 	}
 	
+	private void drawBody(Graphics g) {
+		if(mouseHover)
+			g.setColor(Color.GRAY);
+		else
+		g.setColor(Color.WHITE);
+		g.fillRect(x, y, width, height);
+		
+	}
+
+	
+	public void setMouseHover(boolean mouseHover) {
+		this.mouseHover = mouseHover;
+	}
+
 	private void drawText(Graphics g) {
 		int w = g.getFontMetrics().stringWidth(text);
 		int h = g.getFontMetrics().getHeight();
@@ -53,7 +69,7 @@ public class FirstButton {
 	}
 
 
-	public Rectangle geBounds() {
+	public Rectangle getBounds() {
 		return bounds;
 	}
 	
