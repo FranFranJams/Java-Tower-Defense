@@ -9,7 +9,7 @@ public class FirstButton {
 	private int x, y, width, height;
 	private String text;
 	private Rectangle bounds;
-	private boolean mouseHover;
+	private boolean mouseHover, mousePressed;
 	
 	
 	public FirstButton(String text, int x, int y, int width, int height) {
@@ -33,17 +33,28 @@ public class FirstButton {
 		// Body
 		drawBody(g);
 
-		
-		
 		// Border
-		g.setColor(new Color(108,45,199));
-		g.drawRect(x, y, width, height);
-		
+		drawBorder(g);
 		
 		// Text
 		drawText(g);
-		
+	}	
+	
+	
+	private void drawBorder(Graphics g) {
+		if(mousePressed) {
+			g.setColor(new Color(108,45,199));
+			g.drawRect(x, y, width, height);
+			g.drawRect(x + 1, y + 1, width - 2, height - 2);
+			g.drawRect(x + 2, y + 2, width - 4, height - 4);
+		}else {
+			g.setColor(new Color(108,45,199));
+			g.drawRect(x, y, width, height);
+		}
 	}
+
+		
+
 	
 	private void drawBody(Graphics g) {
 		if(mouseHover)
@@ -54,6 +65,10 @@ public class FirstButton {
 		
 	}
 
+	
+	public void setMousePressed(boolean mousePressed) {
+		this.mousePressed = mousePressed;
+	}
 	
 	public void setMouseHover(boolean mouseHover) {
 		this.mouseHover = mouseHover;

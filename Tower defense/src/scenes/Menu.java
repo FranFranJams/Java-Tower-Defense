@@ -98,7 +98,18 @@ public class Menu extends GameScene implements SceneMethods {
 				bPlaying.setMouseHover(true);
 			}			
 		}
+
+
+
+		@Override
+		public void mousePressed(int x, int y) {
+			
 		
+			if(bPlaying.getBounds().contains(x, y)) {
+				bPlaying.setMousePressed(true);
+			
+		}
+		}
 		
 		
 }
