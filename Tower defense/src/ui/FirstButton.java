@@ -53,7 +53,6 @@ public class FirstButton {
 		}
 	}
 
-		
 
 	
 	private void drawBody(Graphics g) {
@@ -65,6 +64,12 @@ public class FirstButton {
 		
 	}
 
+	
+	public void resetBooleans() {
+		this.mouseHover = false;
+		this.mousePressed = false;
+	}
+	
 	
 	public void setMousePressed(boolean mousePressed) {
 		this.mousePressed = mousePressed;
