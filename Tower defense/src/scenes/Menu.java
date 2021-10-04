@@ -33,7 +33,7 @@ public class Menu extends GameScene implements SceneMethods {
 	
 	
 	private void initButtons() {
-		
+		// Sets variables & defines what the buttons are & where they should go
 		int w = 150;
 		int h = w / 3;
 		int x = 640 / 2 - w / 2;
@@ -48,12 +48,12 @@ public class Menu extends GameScene implements SceneMethods {
 
 	@Override
 	public void render(Graphics g) {
-		
+		// Literally renders stuff
 		
 		drawButtons(g);
 }	
 	
-	
+	// Literally draws the buttons
 		private void drawButtons(Graphics g) {
 		bPlaying.draw(g);
 		bSettings.draw(g);
@@ -61,7 +61,7 @@ public class Menu extends GameScene implements SceneMethods {
 	}
 
 		private void importImg() {
-			
+	// Self explanatory ^ Imports an image (spritesheet in this case) from a given resource 
 			InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
 				
 			try {
@@ -73,7 +73,7 @@ public class Menu extends GameScene implements SceneMethods {
 			
 			}
 			
-			
+	// Loads a SubImage from a SpriteSheet based on X, Y, W & H 
 		private void loadSprites() {
 			
 			for (int y = 0; y < 10; y++) {

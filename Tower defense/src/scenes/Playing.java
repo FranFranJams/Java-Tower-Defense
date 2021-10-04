@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import main.Game;
 import managers.TileManager;
+import ui.BottomBar;
 import ui.FirstButton;
 import helpz.LevelBuilder;
 
@@ -16,6 +17,8 @@ public class Playing extends GameScene implements SceneMethods{
 	private TileManager tileManager;
 	private FirstButton bMenu;
 	
+	private BottomBar bottomBar;
+	
 	public Playing(Game game) {
 		super(game);
 		
@@ -23,6 +26,7 @@ public class Playing extends GameScene implements SceneMethods{
 		initButtons();
 		lvl = LevelBuilder.getLevelData();
 		tileManager = new TileManager();
+		bottomBar = new BottomBar(0, 640, 640, 100);
 		
 		// Tilemanager
 	}
@@ -45,13 +49,15 @@ public class Playing extends GameScene implements SceneMethods{
 		}
 		
 		drawButtons(g);
-		//g.setColor(new Color(108,45,199));
+		bottomBar.draw(g);
+		//g.setColor(new Colour(108,45,199));
 		//g.fillRect(0, 0, 640, 640);
 	}
 
 
 	private void drawButtons(Graphics g) {
 		bMenu.draw(g);
+		
 
 	}
 
